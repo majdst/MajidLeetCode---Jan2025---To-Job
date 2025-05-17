@@ -2,18 +2,20 @@
 def commision_rate():
     sale = float(input('During Last Month, How much did you sell in Total? '))
     
-    if sale <= 10000:
-        commission = 0.1
-    elif 10000 < sale < 15000:
-        commission = 0.12
-    elif 15000 < sale < 18000:
-        commission = 0.14
-    elif 18000 < sale < 22000:
-        commission = 0.16
-    else:
-        commission = 0.18
+    sale_dic = {
+        10000 : 0.1,
+        15000 : 0.12,
+        18000 : 0.14,
+        22000 : 0.16
+        
+    }
     
-    return commission * sale
+    for i in sorted(sale_dic):
+        
+        if sale <= i:
+            return sale_dic[i]
+    return 0.18
+        
 
 def main():
     print("Let's See How Much Did You Sell Last Month :)")
