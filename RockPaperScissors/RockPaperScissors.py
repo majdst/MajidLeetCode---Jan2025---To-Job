@@ -22,15 +22,22 @@ def winner(computer, user):
     print(f'\n computer choice is: {computer}')
     print(f'User choice is: {user}')
     
+    #using dictionary instead of conventional method
+    
+    winnerman = {
+        'rock': 'scissor',
+        'scissor': 'paper',
+        'paper': 'rock'
+    }
+    
+    
     if user == computer:
-        print('It is not possible')
-        return False
+        print('It is not possible, TIE')
+        
     #Important Part of the code:
     
-    if (user == 'Rock' and computer == 'scissors') or \
-        (user == 'scissors' and computer == 'player') or \
-            (user == 'paper' and computer == 'rock'):
-                print('User wins')
+    if winnerman[user] == computer:
+        print('User wins')
     else:
         print('Computer wins')
         
@@ -39,14 +46,10 @@ def winner(computer, user):
     
     
 def main():
-    
-    game_over = False
-    
-    while not game_over:
         
-        user = user_choice()
-        computer = computer_choice()
+    user = user_choice()
+    computer = computer_choice()
         
-        game_over = winner(computer, user)
+    game_over = winner(computer, user)
 
 main()
