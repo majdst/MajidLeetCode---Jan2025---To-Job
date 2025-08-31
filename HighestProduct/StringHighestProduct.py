@@ -1,39 +1,51 @@
-def greatest_product(num_string):
+def max_product(s:str, k:int)-> int:
 
-    max_product = 0
-    max_digits = ''
+    #length s
+    n = len(s)
 
-    for i in range(len(num_string) - 4):
+    product = 1
+    zero_comb = 0
 
-        window = num_string[i: i+5]
+    #sanity check
+    if k<0 or k>n:
+        return 0
+    
+    #First slide
+    for i in range(k):
+        first_slide = int(s[i])
 
-        product = 1
+        #check if there is zero or not
+        if first_slide == 0:
 
-        for char in window:
-            product *= int(char)
+            zero_comb += 1
+        else:
+            product *= first_slide
+    
+    best_product = product
 
-        if product > max_product:
+    #Sliding one to right
+    for j in range(k, n):
 
-            max_product = product
-            max_digits = window
-    return max_product, max_digits
+        d_in = int(s[j])
+        d_out = int(s[j-k])
 
-def main():
+        # removing first element
+        if d_out == 0:
 
-    while True:
-        number = input('Enter a number')
+            zero_comb -=1
+        else:
+            product //= d_out
+        #Adding new element
+        if d_in == 0:
+            zero_comb += 1
+        else:
+            product *= d_in
 
-        while len(number) < 5 or not number.isdigit():
-
-            number = input('Invalid input, Re-enter: ')
         
-        result, digits = greatest_product(number)
-        print(f"Highest product: {result}")
-        print(f"Digits used: {digits}")
+        if product > best_product:
 
-        stop = input('Do you wanna stop(Y/N): ').upper()
+            best_product = product
 
-        if stop == 'Y':
-            break
+    return best_product
 
-main()
+print(max_product('123834539327238239583', 5))
