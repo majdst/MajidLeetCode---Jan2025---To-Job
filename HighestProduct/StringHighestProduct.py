@@ -1,51 +1,53 @@
-def max_product(s:str, k:int)-> int:
+def greatest_product(s:str, k:int)->int:
 
-    #length s
     n = len(s)
-
-    product = 1
-    zero_comb = 0
-
-    #sanity check
-    if k<0 or k>n:
+    max_prod = 0
+    if k< 0 or k > n:
         return 0
     
-    #First slide
-    for i in range(k):
-        first_slide = int(s[i])
-
-        #check if there is zero or not
-        if first_slide == 0:
-
-            zero_comb += 1
-        else:
-            product *= first_slide
+    prod = 1
+    best = 0
+    zero_count = 0
+    current = 0
     
-    best_product = product
+    #first slide
+    first_slide = (s[0:k])
+    for i in first_slide:
+        if int(i) == 0:
+            zero_count +=1
+        else:
+            prod *= int(i)
+    print(f"prod is: {prod}")
+    
+    best = 0 if zero_count else prod
 
-    #Sliding one to right
+    #Sliding 
     for j in range(k, n):
 
-        d_in = int(s[j])
-        d_out = int(s[j-k])
+        in_d = int(s[j])
+        out_d = int(s[j - k])
 
-        # removing first element
-        if d_out == 0:
-
-            zero_comb -=1
+        #removing right element
+        if out_d == 0:
+            zero_count -=1
         else:
-            product //= d_out
-        #Adding new element
-        if d_in == 0:
-            zero_comb += 1
+            prod //= out_d
+        #adding left element
+        if in_d == 0:
+            zero_count += 1
         else:
-            product *= d_in
+            prod *= in_d
 
+        current = 0 if zero_count else prod
+
+        print(f'current is {current}')
+        if current > best:
+
+            best = current
         
-        if product > best_product:
+    return best
+    
 
-            best_product = product
 
-    return best_product
-
-print(max_product('123834539327238239583', 5))
+n = greatest_product('23458980812322132130144', 5)
+print(n)
