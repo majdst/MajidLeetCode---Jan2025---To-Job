@@ -2,18 +2,19 @@ def longchar(s:str)->int:
 
     n = len(s)
     max_num = 0
+    left = 0
+    b = set()
+    for right, ch in enumerate(s):
+        while ch in b:
+            b.remove(s[left])
+            print(f'b is: {b}')
+            left += 1
+        b.add(ch)
+        print('*****')
+        print(f"b now is: {b}")
 
-    for i in range(n):
-        b = set()
-        count = 0
-        for j in range(i,n):
+    max_num = max(max_num, right - left + 1)
 
-            if s[j] in b:
-                break
-            b.add(s[j])
-            count += 1
-
-            if count > max_num:
-                max_num = count
     return max_num
-print(longchar("bb"))
+
+print(longchar("pwwkew"))
