@@ -1,1 +1,0 @@
-This is the Question 14 of the chapter 5, of the Good Book
