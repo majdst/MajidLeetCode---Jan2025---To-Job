@@ -1,4 +1,4 @@
-# LinkedList1:
+# LinkedList2:
 
 This is a simple LinkedList created from scratch as below:
 
@@ -7,3 +7,4 @@ This is a simple LinkedList created from scratch as below:
 # Solution:
 
 Removing the Duplicates from the sorted LinkedList.
+
