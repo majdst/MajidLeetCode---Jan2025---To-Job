@@ -4,7 +4,9 @@
 
 This is a simple LinkedList created from scratch as below:
 
-!\[LinkedListProblem1](LinkedList1.jpg)
+![Description](LinkedList1.jpg)
+/
+)
 
 
 
